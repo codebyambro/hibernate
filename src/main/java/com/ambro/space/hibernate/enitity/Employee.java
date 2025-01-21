@@ -1,21 +1,23 @@
 package com.ambro.space.hibernate.enitity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "employee", schema = "movies")
 public class Employee {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Column(nullable = false)
     private String name;
-    
+
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private long salary;
     public int getId() {
         return id;
     }
@@ -40,12 +42,21 @@ public class Employee {
         this.email = email;
     }
 
+    public long getSalary() {
+        return salary;
+    }
+
+    public void setSalary(long salary) {
+        this.salary = salary;
+    }
+
     public Employee() {
     }
 
-    public Employee(int id, String name, String email) {
+    public Employee(int id, String name, String email, long salary) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.salary = salary;
     }
 }

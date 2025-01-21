@@ -1,32 +1,31 @@
 package com.ambro.space.hibernate;
+import com.ambro.space.hibernate.config.HibernateConfig;
+import com.ambro.space.hibernate.dao.EmployeeDao;
 import com.ambro.space.hibernate.enitity.Employee;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.Properties;
+import java.util.List;
 
 public class Main {
+    private static final Logger log = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
 
-        Configuration configuration = new Configuration();
-        configuration.configure("hibernate.cfg.xml");
-        SessionFactory factory = configuration.buildSessionFactory();
-        configuration.addAnnotatedClass(Employee.class);
-
-        Employee emp = new Employee(1,"Alan", "alan@gmail.com");
-
-        Session session = factory.openSession();
-        Transaction tnx = session.getTransaction();
-
-        session.save(emp);
-
-        tnx.commit();
-
-        session.close();
+        EmployeeDao dao = new EmployeeDao(HibernateConfig.getSessionFactory());
+        try{
+            List<Employee> list = dao.getEmployees();
+            for(Employee emp: list){
+                print(emp.getName()+ " " + emp.getSalary());
+            }
+        }catch (Exception e){
+            log.info(e.getStackTrace());
+        }
 
     }
 

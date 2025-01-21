@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+        <Property name="APP_LOG_ROOT">E:/hibernate/log</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+        <!--        <File name="File" fileName="logs/app.log">-->
+        <!--            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />-->
+        <!--        </File>-->
+        <RollingFile name="LogToFileTrace"
+                     fileName="${APP_LOG_ROOT}/application_info.log"
+                     filePattern="${APP_LOG_ROOT}/application_info-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout>
+                <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"
+                                           modulate="true" />
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+        <Logger name="org.hibernate" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console" level="info" />
+            <AppenderRef ref="LogToFileTrace" level="info" />
+        </Logger>
+        <Root level="INFO">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="LogToFileTrace" />
+        </Root>
+    </Loggers>
+</Configuration>
