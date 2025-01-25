@@ -25,9 +25,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="5f5ddff2-1018-4fc6-84f5-fa822ac8718c" object-ref="consoles/mysql" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="5f5ddff2-1018-4fc6-84f5-fa822ac8718c" />
