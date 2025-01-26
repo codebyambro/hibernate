@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "publishers")
+@Table(name = "publisher")
 public class Publisher {
 
     @Id
@@ -20,7 +20,7 @@ public class Publisher {
     @Column(nullable = false, name = "publisher_address")
     String publisherAddress;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "publishers")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisher")
     Set<Book> books = new HashSet<>();
 
     public String getPublisherAddress() {

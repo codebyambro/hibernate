@@ -2,7 +2,6 @@ package com.ambro.space.hibernate.enitity;
 
 import jakarta.persistence.*;
 
-import java.lang.reflect.Member;
 import java.util.Date;
 
 @Entity

@@ -80,4 +80,13 @@ public class Author {
     public void setBiography(String biography) {
         this.biography = biography;
     }
+
+    public Author(Long authorId, String name, Date author_dob, Date author_dod, Set<Book> books, String biography) {
+        this.authorId = authorId;
+        this.name = name;
+        this.author_dob = author_dob;
+        this.author_dod = author_dod;
+        this.books = books;
+        this.biography = biography;
+    }
 }

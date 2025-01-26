@@ -2,6 +2,11 @@ package com.ambro.space.hibernate.enitity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "members")
 public class Member {
 
     @Id
@@ -22,11 +27,12 @@ public class Member {
     String email;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "card_id", referencedColumnName = "cardId")
+    @JoinColumn(name = "libraryCard", referencedColumnName = "libraryCardId")
     LibraryCard libraryCard;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    Loan loan;
+//    Loan loan;
+    private List<Loan> loans = new ArrayList<>();
 
     public Long getMemberId() {
         return memberId;
@@ -76,11 +82,21 @@ public class Member {
         this.libraryCard = libraryCard;
     }
 
-    public Loan getLoan() {
-        return loan;
+//    public
+//    Loan getLoan() {
+//        return loan;
+//    }
+//
+//    public void setLoan(Loan loan) {
+//        this.loan = loan;
+//    }
+
+
+    public List<Loan> getLoans() {
+        return loans;
     }
 
-    public void setLoan(Loan loan) {
-        this.loan = loan;
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
     }
 }
